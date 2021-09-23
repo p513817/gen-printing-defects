@@ -35,13 +35,14 @@ def is_rgb(img):
 def ez_randint(min, max):
     return np.random.randint(min, max)
 
-def rand_noise(img, prob=1):
+def rand_noise(img, prob=1, bgr=255):
     """
     Generate random noise
     """
     h,w = img.shape[:2]
 
     noise_img = img.copy()
+
     noise_nums = int(prob*h*w)
 
     for i in range(noise_nums):
@@ -49,9 +50,11 @@ def rand_noise(img, prob=1):
         col=ez_randint(0, w-1)
 
         if ez_randint(0,2)==0:
-            noise_img[row, col]=255
+            noise_img[row, col]=bgr
+            
         else:
             noise_img[row, col]=0
+
     return noise_img
 
 
